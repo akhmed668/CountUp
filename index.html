@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CountUp</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #111;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            cursor: pointer;
+            transition: background-color 0.5s;
+            user-select: none;
+        }
+
+        header {
+            position: absolute;
+            top: 20px;
+            font-size: 1.8rem; /* 10% кішірейтілді */
+            font-weight: bold;
+        }
+
+        #instruction {
+            position: absolute;
+            top: 60px;
+            font-size: 1.35rem; /* 10% кішірейтілді */
+        }
+
+        #counter {
+            font-size: 5.4rem; /* 10% кішірейтілді */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>CountUp</header>
+    <div id="instruction">Нажмите на экран</div>
+    <div id="counter">0</div>
+
+    <script>
+        const counter = document.getElementById('counter');
+
+        // LocalStorage-тен санды алу
+        let count = localStorage.getItem('count') ? parseInt(localStorage.getItem('count')) : 0;
+        counter.textContent = count;
+
+        // Түсті кездейсоқ өзгерту функциясы
+        function randomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        // Бетке басу оқиғасы
+        document.body.addEventListener('click', () => {
+            count++;
+            counter.textContent = count;
+            localStorage.setItem('count', count);
+            document.body.style.backgroundColor = randomColor();
+        });
+    </script>
+</body>
+</html>
+
